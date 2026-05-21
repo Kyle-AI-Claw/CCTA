@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  username      String   @unique
+  email         String   @unique
+  passwordHash  String
+  coins         Coin[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Coin {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name            String?
+  denomination    String?
+  year            Int?
+  mintMark        String?
+  country         String?
+  metal           String?
+  grade           String?
+
+  purchasedDate   DateTime?
+  purchasePrice   Float?
+  notes           String?
+  frontImagePath  String?
+  backImagePath   String?
+  description     String?
+
+  tags            CoinTag[]
+  categories      CoinCategory[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([country])
+  @@index([year])
+  @@index([denomination])
+}
+
+model Tag {
+  id      String @id @default(cuid())
+  name    String @unique
+
+  coins   CoinTag[]
+
+  createdAt DateTime @default(now())
+}
+
+model CoinTag {
+  coinId  String
+  coin    Coin    @relation(fields: [coinId], references: [id], onDelete: Cascade)
+
+  tagId   String
+  tag     Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([coinId, tagId])
+}
+
+model Category {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+
+  coins       CoinCategory[]
+
+  createdAt   DateTime @default(now())
+}
+
+model CoinCategory {
+  coinId       String
+  coin         Coin        @relation(fields: [coinId], references: [id], onDelete: Cascade)
+
+  categoryId   String
+  category     Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([coinId, categoryId])
+}

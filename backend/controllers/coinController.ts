@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { prisma } from '../lib/prisma';
-import { Coin } from '../lib/types';
+import { Coin } from '../types';
 import { z } from 'zod';
 
 // Validation schema for creating a coin
@@ -112,7 +112,7 @@ export async function getAllCoins(req: Request, res: Response, next: NextFunctio
     res.status(200).json({
       success: true,
       data: {
-        coins: coins as Coin[],
+        coins: coins as unknown as Coin[],
         pagination: {
           page: Number(page),
           limit: Number(limit),
@@ -159,7 +159,7 @@ export async function getCoinById(req: Request, res: Response, next: NextFunctio
 
     res.status(200).json({
       success: true,
-      data: coin as Coin,
+      data: coin as unknown as Coin,
     });
   } catch (error) {
     next(error);
@@ -188,7 +188,7 @@ export async function createCoin(req: Request, res: Response, next: NextFunction
 
     res.status(201).json({
       success: true,
-      data: coin as Coin,
+      data: coin as unknown as Coin,
     });
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -243,7 +243,7 @@ export async function updateCoin(req: Request, res: Response, next: NextFunction
 
     res.status(200).json({
       success: true,
-      data: coin as Coin,
+      data: coin as unknown as Coin,
     });
   } catch (error) {
     if (error instanceof z.ZodError) {
