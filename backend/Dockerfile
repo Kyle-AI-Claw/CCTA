@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM node:20-bookworm AS builder
 
 WORKDIR /app
 # Copy prisma first so it's available for postinstall
@@ -15,7 +15,7 @@ COPY types ./types
 COPY middleware ./middleware
 RUN npx tsc
 
-FROM node:20-alpine
+FROM node:20-bookworm
 WORKDIR /app
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/prisma ./prisma

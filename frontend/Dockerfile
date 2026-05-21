@@ -20,6 +20,7 @@ COPY store ./store
 COPY ui ./ui
 COPY types ./types
 COPY services ./services
+COPY utils ./utils
 RUN npm run build
 
 FROM nginx:alpine

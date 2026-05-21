@@ -1,5 +1,7 @@
 import type { Coin, CoinFormData, PaginatedResponse } from '../types';
-import { API_BASE_URL } from '../config';
+import { config } from '../config';
+
+const API_BASE_URL = config.apiUrl;
 
 const getAuthHeaders = () => {
   const accessToken = localStorage.getItem('accessToken');
