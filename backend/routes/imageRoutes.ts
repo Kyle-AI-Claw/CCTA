@@ -4,7 +4,7 @@ import { upload, processImage } from '../controllers/imageController';
 
 const router = Router();
 
-// Apply authentication to image routes
+// All image routes require authentication
 router.use(authenticateToken);
 
 router.post('/upload', upload.single('file'), async (req, res) => {

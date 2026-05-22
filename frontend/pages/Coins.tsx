@@ -44,7 +44,12 @@ export function Coins() {
 
   const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this coin?')) {
-      // Implement delete logic
+      try {
+        await deleteCoin(id);
+        fetchCoins();
+      } catch (err) {
+        console.error('Failed to delete coin:', err);
+      }
     }
   };
 
