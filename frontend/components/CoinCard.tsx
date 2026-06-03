@@ -15,7 +15,7 @@ interface CoinCardProps {
 export function CoinCard({ coin, onEdit, onDelete, onView }: CoinCardProps) {
   const [showActions, setShowActions] = useState(false);
 
-  formatDate = (date?: string) => {
+  const formatDate = (date?: string) => {
     if (!date) return '';
     return new Date(date).toLocaleDateString('en-US', {
       year: 'numeric',

@@ -12,7 +12,7 @@ import type { Coin } from '../types';
 
 export function Coins() {
   const navigate = useNavigate();
-  const { coins, loading, error, fetchCoins, createCoin } = useCoins();
+  const { coins, loading, error, fetchCoins, createCoin, deleteCoin } = useCoins();
   const [search, setSearch] = useState('');
   const [filterCountry, setFilterCountry] = useState('');
   const [filterYear, setFilterYear] = useState('');
