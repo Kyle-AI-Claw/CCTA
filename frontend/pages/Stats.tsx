@@ -3,6 +3,7 @@ import { TrendingUp, TrendingDown, DollarSign, Coins, Globe, Calendar, PieChart 
 import { Card, CardContent } from '../components/ui/card';
 import { useAuth } from '../hooks/useAuth';
 import { useCoins } from '../hooks/useCoins';
+import { config } from '../config';
 
 interface Coin {
   id: string;
@@ -52,7 +53,7 @@ export function Stats() {
     try {
       setLoading(true);
       const token = localStorage.getItem('accessToken');
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/stats`, {
+      const response = await fetch(`${config.apiUrl}/stats`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -71,7 +72,7 @@ export function Stats() {
         });
         
         // Get coins for chart data
-        const coinsResponse = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/coins?limit=500`, {
+        const coinsResponse = await fetch(`${config.apiUrl}/coins?limit=500`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

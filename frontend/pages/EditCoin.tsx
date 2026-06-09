@@ -8,6 +8,7 @@ import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { useAuth } from '../hooks/useAuth';
 import { useCoins } from '../hooks/useCoins';
+import { config } from '../config';
 import { CoinForm } from '../components/forms/CoinForm';
 import type { Coin } from '../types';
 
@@ -30,7 +31,7 @@ export function EditCoin() {
     try {
       setLoading(true);
       const token = localStorage.getItem('accessToken');
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/coins/${id}`, {
+      const response = await fetch(`${config.apiUrl}/coins/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

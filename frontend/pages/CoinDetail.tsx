@@ -5,6 +5,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { useAuth } from '../hooks/useAuth';
+import { config } from '../config';
 import type { Coin } from '../types';
 
 export function CoinDetail() {
@@ -25,7 +26,7 @@ export function CoinDetail() {
   const fetchCoinDetails = async (coinId: string) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_.VITE_API_URL || 'http://localhost:3000'}/api/coins/${coinId}`, {
+      const response = await fetch(`${config.apiUrl}/coins/${coinId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -56,7 +57,7 @@ export function CoinDetail() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_.VITE_API_URL || 'http://localhost:3000'}/api/coins/${coin.id}`, {
+      const response = await fetch(`${config.apiUrl}/coins/${coin.id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -180,7 +181,7 @@ export function CoinDetail() {
                 {coin.frontImagePath && (
                   <div>
                     <img
-                      src={`${import.meta.env.VITE_.VITE_API_URL || 'http://localhost:3000'}/api/images/${coin.frontImagePath}`}
+                      src={`${config.apiUrl}/images/${coin.frontImagePath}`}
                       alt={coin.name || 'Coin'}
                       className="w-full rounded-lg border"
                     />
@@ -190,7 +191,7 @@ export function CoinDetail() {
                 {coin.backImagePath && (
                   <div>
                     <img
-                      src={`${import.meta.env.VITE_.VITE_API_URL || 'http://localhost:3000'}/api/images/${coin.backImagePath}`}
+                      src={`${config.apiUrl}/images/${coin.backImagePath}`}
                       alt={coin.name || 'Coin'}
                       className="w-full rounded-lg border"
                     />

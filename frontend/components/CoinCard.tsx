@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardFooter } from './ui/card';
 import { Badge } from './ui/badge';
 import type { Coin } from '../types';
+import { config } from '../config';
 
 interface CoinCardProps {
   coin: Coin;
@@ -29,7 +30,7 @@ export function CoinCard({ coin, onEdit, onDelete, onView }: CoinCardProps) {
       <div className="relative aspect-square overflow-hidden bg-muted">
         {coin.frontImagePath ? (
           <img
-            src={`${import.meta.env.VITE_.VITE_API_URL || 'http://localhost:3000'}/api/images/${coin.frontImagePath}`}
+            src={`${config.apiUrl}/images/${coin.frontImagePath}`}
             alt={coin.name || 'Coin'}
             className="h-full w-full object-cover"
           />

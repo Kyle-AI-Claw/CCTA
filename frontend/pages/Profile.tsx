@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useAuth } from '../hooks/useAuth';
+import { config } from '../config';
 import type { User } from '../types';
 
 export function Profile() {
@@ -52,7 +53,7 @@ export function Profile() {
       setLoading(true);
       const token = localStorage.getItem('accessToken');
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/users/me`, {
+      const response = await fetch(`${config.apiUrl}/users/me`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

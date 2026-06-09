@@ -6,6 +6,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useAuth } from '../hooks/useAuth';
+import { config } from '../config';
 import type { Tag as TagType } from '../types';
 
 export function TagManager() {
@@ -25,7 +26,7 @@ export function TagManager() {
     try {
       setLoading(true);
       const token = localStorage.getItem('accessToken');
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/tags`, {
+      const response = await fetch(`${config.apiUrl}/tags`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -47,7 +48,7 @@ export function TagManager() {
 
     try {
       const token = localStorage.getItem('accessToken');
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/tags`, {
+      const response = await fetch(`${config.apiUrl}/tags`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -75,7 +76,7 @@ export function TagManager() {
 
     try {
       const token = localStorage.getItem('accessToken');
-      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/tags/${id}`, {
+      await fetch(`${config.apiUrl}/tags/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
