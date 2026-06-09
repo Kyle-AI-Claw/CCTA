@@ -25,10 +25,11 @@ Clean refactor of the Coin Collection Tracker App (CCTA) - keep same features, r
 - [ ] Fix any build issues
 
 ### Phase 5: Docker Fixes
-- [ ] Review docker-compose.yml for issues
-- [ ] Ensure proper healthchecks
-- [ ] Fix volume mounts
-- [ ] Test full Docker stack runs
+- [x] Review docker-compose.yml for issues
+- [x] Ensure proper healthchecks
+- [x] Fix volume mounts
+- [x] Test full Docker stack runs
+- [x] Add authenticateToken to /api/stats (was returning 500 on unauth)
 
 ### Phase 6: Testing & Integration
 - [ ] End-to-end testing
